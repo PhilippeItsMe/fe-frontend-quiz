@@ -121,6 +121,7 @@ button {
     min-width: 25rem;
     cursor: pointer;
     padding: 0.5rem;
+    border: none;
 
 }
 
