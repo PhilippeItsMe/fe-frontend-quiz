@@ -110,6 +110,52 @@ p {
 
 /* ---------- Start Menu ----------*/
 
+.toggle-wrapper {
+    display: flex;
+    flex: row;
+    justify-content: end;
+    margin-bottom: 3rem;    
+}
+
+.toggle-wrapper img {
+    stroke-width: 8;
+}
+
+.toggle-switch {
+    margin: 0 0.5rem;
+}
+
+.toggle-label {
+  display: block;
+  width: 50px;
+  height: 25px;
+  background: var(--purple600);
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.4s;
+}
+
+.toggle-ball {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 19px;
+  height: 19px;
+  background: var(--white);
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+/* To hide the checkbox*/
+.toggle-input {
+  display: none;
+}
+
+.toggle-input:checked + .toggle-label .toggle-ball {
+  transform: translateX(-25px);
+}
+
 button {
     outline: none;
     display: flex;
@@ -134,4 +180,29 @@ button {
 button span {
     font-size: 1.2rem;
     margin-left: 1rem;
+}
+
+
+/* ---------- Responsivness ----------*/
+
+@media screen and (max-width: 900px) {
+    
+    .body-wrapper {
+        background-image: url(../images/pattern-background-tablet-dark.svg);
+    }
+    
+    .quiz-wrapper {
+        flex-direction: column;
+        }
+}
+
+@media screen and (max-width: 450px) {
+    
+    .body-wrapper {
+        background-image: url(../images/pattern-background-mobile-dark.svg);
+    }
+
+    button {
+            min-width: 15rem;
+        }
 }
