@@ -1,3 +1,5 @@
+// ---------------- Toogle Btn & Color Mgt ---------------- //
+
 const background = document.getElementsByClassName('body-wrapper')[0];
 const surtitle = document.getElementsByClassName('surtitle')[0];
 const title = document.getElementsByTagName('h1')[0];
@@ -38,3 +40,32 @@ toggle.addEventListener('change', () => {
         }
     }
 });
+
+
+// ---------------- Load Data ---------------- //
+
+async function loadData() {
+    try {
+        const response = await fetch('assets/data/data.json');
+        const data = await response.json();
+        quizData = data;
+        
+        // Start with default data
+        updateDataDisplay(weeklyElement);
+        selectButton(weeklyElement);
+    } catch (error) {
+        console.error('Erreur lors du chargement des données:', error);
+    }
+}
+
+
+
+
+
+// ---------------- Quizz ---------------- //
+
+const buttonOne = document.getElementsByTagName('button')[0];
+const buttonTwo = document.getElementsByTagName('button')[1];
+const buttonThree = document.getElementsByTagName('button')[2];
+const buttonFour = document.getElementsByTagName('button')[3];
+
