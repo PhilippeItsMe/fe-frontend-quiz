@@ -117,6 +117,21 @@ p {
     margin-bottom: 3rem;    
 }
 
+.toogle-accessibility {
+    display: flex;
+    flex: row;
+    justify-content: end;
+    border: 2px solid transparent;
+    padding: 8px;
+    margin-right: -10px;
+}
+
+.toogle-accessibility:focus-within {
+    border: 2px solid var(--green500);
+    padding: 8px;
+    border-radius: 0.7rem;     
+}   
+
 .toggle-wrapper img {
     stroke-width: 8;
 }
@@ -133,7 +148,6 @@ p {
   border-radius: 25px;
   position: relative;
   cursor: pointer;
-  transition: background 0.4s;
 }
 
 .toggle-ball {
@@ -147,9 +161,11 @@ p {
   transition: transform 0.4s;
 }
 
-/* To hide the checkbox*/
+/* To hide the checkbox*/ 
 .toggle-input {
-  display: none;
+    position: absolute;
+    opacity: 0;
+    background-color: transparent;         
 }
 
 .toggle-input:checked + .toggle-label .toggle-ball {
@@ -163,12 +179,31 @@ button {
     align-items: center;
     justify-content: start;
     background-color: var(--blue850);
+    border: 2px solid var(--blue850);
     border-radius: 0.7rem;
     min-width: 25rem;
     cursor: pointer;
     padding: 0.5rem;
-    border: none;
+}
 
+button:first-of-type:hover,
+button:first-of-type:focus {
+    border: 2px solid var(--orange400) !important;
+}
+
+button:nth-of-type(2):hover,
+button:nth-of-type(2):focus {
+    border: 2px solid var(--green500) !important;
+}
+
+button:nth-of-type(3):hover,
+button:nth-of-type(3):focus {
+    border: 2px solid var(--blue500) !important;
+}
+
+button:nth-of-type(4):hover,
+button:nth-of-type(4):focus {
+    border: 2px solid var(--purple600) !important; 
 }
 
 .icon {
