@@ -15,49 +15,58 @@
 
 <body class="body-wrapper">
     <main>
-        <!-- Toogle -->
-        <div class="toggle-wrapper">
-            <div class="toogle-accessibility">
-                <img class="sun" src="assets/images/icon-sun-dark.svg" alt="sun dark icon">
-                <div class="toggle-switch">
-                    <input type="checkbox" id="monToggle" class="toggle-input">
-                    <label for="monToggle" class="toggle-label">
-                        <span class="toggle-ball"></span>
-                    </label>
+        <!-- Subject & & Toogle Bloc -->
+         <div class="subject-toogle-wrapper">
+
+            <!-- Subject (step 2) -->
+            <div class="subject-wrapper subject-display">
+                <img class="icon bg-orange50" src="assets/images/icon-html.svg" alt="subject icon">
+                <span class="subject">HTML</span>
+            </div>
+            
+            <!-- Toogle -->
+            <div class="toggle-wrapper">
+                <div class="toogle-accessibility">
+                    <img class="sun" src="assets/images/icon-sun-dark.svg" alt="sun dark icon">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="monToggle" class="toggle-input">
+                        <label for="monToggle" class="toggle-label">
+                            <span class="toggle-ball"></span>
+                        </label>
+                    </div>
+                    <img src="assets/images/icon-moon-dark.svg" alt="moon dark icon">
                 </div>
-                <img src="assets/images/icon-moon-dark.svg" alt="moon dark icon">
             </div>
         </div>
 
-        <!-- Quizz -->
+        <!-- Quizz  Bloc -->
+
         <div class="quiz-wrapper">
 
-            <!-- Question -->
-            <div class="questions-wrapper">
-                <!-- Subject-->
-                <div class="subject-wrapper">
-                    <img class="icon bg-orange50" src="assets/images/icon-html.svg" alt="subject icon">
-                    <span class="subject">HTML</span>
-                </div>
-                <!-- Titel & Subtitle-->
-                <div id="title-wrapper">
+            <!-- Start & Questions Column -->
+            <div class="questions-wrapper">   
+
+                <!-- Start Menu -->
+                <div id="title-wrapper" class="title-display">
                     <p class="surtitle">Welcome to the</p>
-                    <h1>Frontend Quiz!<h1>
+                    <h1>Frontend Quiz!</h1>
                     <p class="subtitle">Pick a subject to get started</p>
                 </div>
-                <!-- Question number & Question -->
-                <div id="title-wrapper">
-                    <p class="surtitle">Welcome to the</p>
-                    <h1>Frontend Quiz!<h1>
-                    <p class="subtitle">Pick a subject to get started</p>
-                </div>
-
-                <!-- Breadscrump line -->
-
+                
+                <!-- Question Menu (step2)-->
+                <div id="question-wrapper" class="question-display">
+                    <p class="subtitle-count">Question 1 of 10</p>
+                    <p class="question">What does HTML stand for?</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill"> </div>
+                    </div>
+               </div>
             </div>
 
-            <!-- Answer -->
-            <div class="answers-wrapper">
+            <!-- Answers Column -->
+
+            <!-- Start Menu -->
+            <div class="answers-wrapper subject-choice-display">
                 <button>
                     <img class="icon bg-orange50" src="assets/images/icon-html.svg" alt="html icon">
                     <span class="subject">HTML</span>
@@ -74,8 +83,26 @@
                     <img  class="icon bg-purple100" src="assets/images/icon-accessibility.svg" alt="html icon">
                     <span class="subject">Accessibility</span>
                 </button>
-      
+            </div>
 
+            <!-- Question Menu (step2) -->
+            <div class="answers-wrapper answers-display">
+                <button id="a-btn">
+                    <span class="letter-box">A</span>
+                    <span id="a-answ" class="subject">Hyper Trainer Marking Language</span>
+                </button>
+                <button id="b-btn">
+                    <span class="letter-box">B</span>
+                    <span id="b-answ"  class="subject">Hyper Text Marketing Language</span>
+                </button>
+                <button id="c-btn">
+                    <span class="letter-box">C</span>
+                    <span  id="c-answ"  class="subject">Hyper Text Markup Language</span>
+                </button>
+                <button id="d-btn">
+                    <span class="letter-box">D</span>
+                    <span id="d-answ" class="subject">Hyper Text Markup Leveler</span>
+                </button>
             </div>
         </div>
 

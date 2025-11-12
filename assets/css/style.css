@@ -77,12 +77,20 @@ h1 {
     font-style: italic;
 }
 
+.subtitle-count{
+    color: var(--blue300);
+    font-size: 0.5;
+    font-weight: 300;
+    letter-spacing: normal;
+    font-style: italic;
+}
+
 p {
     font-size: 1rem;
 }
 
 
-/* -------------- ------ Section wrappers --------------- -----*/
+/* -------------- ------ Section wrappers --------------------*/
 
 .body-wrapper {
     display: flex;
@@ -104,29 +112,20 @@ p {
     gap: 3rem;
 }
 
-.answers-wrapper,
-.questions-wrapper {
+.question-wrapper,
+.answers-wrapper {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.subject-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    display: none;
-}
-
-
 /* -------------------- Start Menu --------------------*/
 
+/* Toggle */
 .toggle-wrapper {
     display: flex;
     flex: row;
     justify-content: end;
-    margin-bottom: 3rem;    
 }
 
 .toogle-accessibility {
@@ -138,7 +137,6 @@ p {
     margin-right: -10px;
 }
 
-/* .toogle-accessibility:focus-within { */
 .toogle-accessibility:has(.toggle-input:focus-visible) {
     border: 2px solid var(--green500);
     padding: 8px;
@@ -174,7 +172,6 @@ p {
   transition: transform 0.4s;
 }
 
-/* To hide the checkbox*/ 
 .toggle-input {
     position: absolute;
     opacity: 0;
@@ -185,6 +182,7 @@ p {
   transform: translateX(-25px);
 }
 
+/* Button */
 button {
     outline: none;
     display: flex;
@@ -233,9 +231,115 @@ button span {
 
 /* -------------------- Questions --------------------*/
 
+/* Subject & Toogle */
+.subject-toogle-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.subject-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
 .subject-wrapper span {
     font-size: 1.2rem;
     margin-left: 1rem;
+}
+
+/* Question */
+.question {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+}
+
+/* Progress bar */
+.progress-bar {
+    width: 100%;
+    height: 0.6rem;
+    background-color: var(--blue850);
+    border-radius: 0.2rem;
+    padding: 0.1rem;
+}
+
+.progress-fill {
+    width: 50%;
+    height: 0.4rem;
+    background-color: var(--purple600);
+    border-radius: 0.2rem;
+}
+
+
+/* Answers */
+
+/* WARNING WARNING WARNING - TO ERASE LATER */
+.toogle-accessibility:has(.toggle-input:focus-visible) {
+    border: 2px solid var(--purple600);  
+}   
+
+.answers-display button:first-of-type:hover,
+.answers-display  button:first-of-type:focus {
+    border: 2px solid var(--purple600) !important;
+}
+
+.answers-display button:nth-of-type(2):hover,
+.answers-display button:nth-of-type(2):focus {
+    border: 2px solid var(--purple600) !important;
+}
+
+.answers-display button:nth-of-type(3):hover,
+.answers-display button:nth-of-type(3):focus {
+    border: 2px solid var(--purple600) !important;
+}
+
+.answers-display button:nth-of-type(4):hover,
+.answers-display button:nth-of-type(4):focus {
+    border: 2px solid var(--purple600) !important; 
+}
+
+.letter-box {
+    margin: 0.5rem;
+    height: 46.38px;
+    width: 46.38px;
+    color: var(--grey500);
+    border-radius: 0.5rem;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form step 1(Start Menu) to step 2 (Questions Menu)*/
+
+/* Step 1 */
+
+/* WARNING WARNING WARNING - TO INTEGRATE LATER */
+.subject-toogle-wrapper {
+    justify-content: space-between !important; /*space-between or end*/
+}
+
+.title-display {
+    display: none !important; /*none or initial*/
+
+}
+.subject-choice-display {
+    display: none !important; /*none or flex*/
+}
+
+
+/* Step 2 */
+.question-display {
+    display: initial !important; /*none or initial*/
+}
+.answers-display,
+.subject-display {
+    display: flex !important; /*none or flex*/
 }
 
 
