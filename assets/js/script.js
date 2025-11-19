@@ -425,8 +425,7 @@
         }
     ]
 
-
-// ---------------- Toogle Btn & Color Mgt ---------------- //
+// ---------------- Toogle Day & Night ---------------- //
 
 const background = document.getElementsByClassName('body-wrapper')[0];
 const surtitle = document.getElementsByClassName('surtitle')[0];
@@ -435,15 +434,25 @@ const subtitle = document.getElementsByClassName('subtitle')[0];
 const buttons = document.getElementsByTagName('button');
 const subjects = document.getElementsByClassName('subject');
 
+const subtitle_count = document.getElementsByClassName('subtitle-count')[0];
+const subject_question = document.getElementById('subject-question');
+const progress_bar_background = document.getElementsByClassName('progress-bar')[0];;
+
 const toggle = document.getElementById('monToggle');
 
 toggle.addEventListener('change', () => {
+    // day
     if(toggle.checked) {
         background.style.backgroundImage = 'url(assets/images/pattern-background-desktop-light.svg)';
         background.style.backgroundColor = 'var(--grey50)';
         surtitle.style.color = 'var(--blue900)';
         title.style.color = 'var(--blue900)';
         subtitle.style.color = 'var(--grey500)';
+
+        subtitle_count.style.color = 'var(--blue900)';
+        progress_bar_background.style.backgroundColor = 'var(--white)';
+        subject_question.style.color = 'var(--blue900)';
+        
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.backgroundColor = 'var(--white)';
             buttons[i].style.border = '2px solid var(--white)';
@@ -452,12 +461,18 @@ toggle.addEventListener('change', () => {
             subjects[i].style.color = 'var(--blue900)';
         }
     }
+    // night
     else {
         background.style.backgroundImage = 'url(assets/images/pattern-background-desktop-dark.svg)'
         background.style.backgroundColor = 'var(--blue900)';
         surtitle.style.color = 'var(--white)';
         title.style.color = 'var(--white)';
         subtitle.style.color = 'var(--blue300)';
+
+        subtitle_count.style.color = 'var(--white)';
+        progress_bar_background.style.backgroundColor = 'var(--blue850)';
+        subject_question.style.color = 'var(--white)';
+
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.backgroundColor = 'var(--blue850)';
             buttons[i].style.border = '2px solid var(--blue850)';
@@ -485,16 +500,14 @@ for (let i = 0; i < buttons.length; i++) {
 
 // ---------------- Quizz Selection ---------------- //
 
-function startQuizz(quizzSelected) {
-    
-    
+let currentQuestionIndex = 0;
+let correctAnsser = 0;
 
+displayFirstQuestion ()
 
-}
+getAnswer ()
 
+dispayNextQuestion ()
 
-
-
-
-
+displayResult ()
 

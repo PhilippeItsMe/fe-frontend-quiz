@@ -33,6 +33,7 @@
     --green100: #E0FDEF;
 
     --purple600: #A729F5;
+    --purple200: #d3a7ec;
     --purple100: #F6E7FF;
 
     --orange400: #FF7E35;
@@ -43,9 +44,9 @@
 
 /*Backgrounds*/
 .bg-blue50 {background-color: var(--blue50);}
-.bg-green100 {background-color: var(--blue50);}
-.bg-purple100{background-color: var(--blue50);}
-.bg-orange50 {background-color: var(--blue50);}
+.bg-green100 {background-color: var(--green100);}
+.bg-purple100{background-color: var(--purple100);}
+.bg-orange50 {background-color: var(--orange50);}
 
 
 /* -------------------- Typos -------------- ------*/
@@ -71,7 +72,7 @@ h1 {
 .subtitle {
     margin-top: 2rem;
     color: var(--blue300);
-    font-size: 0.5;
+    font-size: 0.8rem;
     font-weight: 300;
     letter-spacing: normal;
     font-style: italic;
@@ -79,7 +80,7 @@ h1 {
 
 .subtitle-count{
     color: var(--blue300);
-    font-size: 0.5;
+    font-size: 0.8rem;
     font-weight: 300;
     letter-spacing: normal;
     font-style: italic;
@@ -303,13 +304,28 @@ button span {
     border: 2px solid var(--purple600) !important; 
 }
 
+.answers-display button:nth-of-type(5):hover,
+.answers-display button:nth-of-type(5):focus {
+    background-color: var(--purple600) !important; 
+}
+
 .letter-box {
     margin: 0.5rem;
     height: 46.38px;
     width: 46.38px;
     color: var(--grey500);
     border-radius: 0.5rem;
-    background-color: var(--white);
+    background-color: var(--grey50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.answer-btn {
+    height:82px;
+    font-size: 1.2rem;
+    border: none !important;
+    background-color: var(--purple200) !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -329,7 +345,7 @@ button span {
 
 }
 .subject-choice-display {
-    display: none !important; /*none or flex*/
+    display: flex !important; /*none or flex*/
 }
 
 
