@@ -234,7 +234,7 @@ button span {
 
 /* Subject & Toogle */
 .subject-toogle-wrapper {
-    display: flex;
+    /* display: flex; is integrated in the switch section*/
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -279,7 +279,6 @@ button span {
 
 /* Answers */
 
-/* WARNING WARNING WARNING - TO ERASE LATER */
 .toogle-accessibility:has(.toggle-input:focus-visible) {
     border: 2px solid var(--purple600);  
 }   
@@ -335,27 +334,26 @@ button span {
 
 /* Step 1 */
 
-/* WARNING WARNING WARNING - TO INTEGRATE LATER */
 .subject-toogle-wrapper {
-    justify-content: space-between !important; /*space-between or end*/
+    justify-content: end; /*space-between or end*/
 }
 
 .title-display {
-    display: none !important; /*none or initial*/
+    display: initial; /*none or initial*/
 
 }
 .subject-choice-display {
-    display: flex !important; /*none or flex*/
+    display: flex; /*none or flex*/
 }
 
 
 /* Step 2 */
 .question-display {
-    display: initial !important; /*none or initial*/
+    display: none; /*none or initial*/
 }
 .answers-display,
 .subject-display {
-    display: flex !important; /*none or flex*/
+    display: none; /*none or flex*/
 }
 
 

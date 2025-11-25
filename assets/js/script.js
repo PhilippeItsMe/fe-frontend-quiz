@@ -436,7 +436,8 @@ const subjects = document.getElementsByClassName('subject');
 
 const subtitle_count = document.getElementsByClassName('subtitle-count')[0];
 const subject_question = document.getElementById('subject-question');
-const progress_bar_background = document.getElementsByClassName('progress-bar')[0];;
+const progress_bar_background = document.getElementsByClassName(
+    'progress-bar')[0];;
 
 const toggle = document.getElementById('monToggle');
 
@@ -484,6 +485,89 @@ toggle.addEventListener('change', () => {
     }
 });
 
+
+// ---------------- Quizz Selection ---------------- //
+
+// page const
+const subject_toogle_wrapper = document.getElementsByClassName(
+    'subject-toogle-wrapper')[0];
+const title_display = document.getElementsByClassName('title-display')[0];
+const subject_choice_display = document.getElementsByClassName(
+    'subject-choice-display')[0];
+const question_display = document.getElementsByClassName('question-display')[0];
+const answers_display = document.getElementsByClassName('answers-display')[0];
+const subject_display = document.getElementsByClassName('subject-display')[0];
+
+// subject const
+const subject_icon = document.getElementById('subject-icon');
+const subject_name = document.getElementById('subject-name');
+
+// question rollout var
+let currentQuestionIndex = 0;
+let correctAnswer = 0;
+
+function displayFirstQuestion(quizzSelected) {
+
+    console.log(quizzSelected);
+
+    // page change
+    subject_toogle_wrapper.style.justifyContent = 'end';
+    title_display.style.display = 'none';
+    subject_choice_display.style.display = "none";
+    question_display.style.display = "initial";
+    answers_display.style.display = "flex";
+    subject_display.style.display = "flex";
+
+    // subject display
+    subject_icon.src =  quizzSelected.icon;
+
+    switch (quizzSelected.title) {
+        case 'HTML':
+            subject_icon.classList.add('bg-orange50')
+            break
+        case 'CSS':
+            subject_icon.classList.add('bg-green100')
+            break
+        case 'JavaScript':
+            subject_icon.classList.add('bg-blue50')
+            break
+        case 'Accessibility':
+            subject_icon.classList.add('bg-purple100')
+            break
+    }
+
+    // question & answer display
+    console.log(currentQuestionIndex)
+    console.log(correctAnswer)
+
+
+
+
+
+
+
+
+    
+}
+
+function getAnswer() {
+    // Write your code here
+}
+
+function displayNextQuestion() {
+    // Write your code here
+}
+
+function displayResult() {
+    // Write your code here
+}
+
+
+
+
+
+
+
 // ---------------- Quizz Choice ---------------- //
 
 let selectedButtonText = null;
@@ -491,23 +575,12 @@ let selectedButtonText = null;
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', (event) => {
         selectedButtonText = event.currentTarget.textContent.trim();
-        console.log('Bouton cliqué:', selectedButtonText);
-        const quizzSelected = quizzes.find(item => item.title === selectedButtonText)
-        console.log(quizzSelected)
-        startQuizz(quizzSelected)
+        // console.log('Bouton cliqué:', selectedButtonText);
+        const quizzSelected = quizzes.find(
+            item => item.title === selectedButtonText)
+        displayFirstQuestion(quizzSelected)
     });
 }
 
 // ---------------- Quizz Selection ---------------- //
-
-let currentQuestionIndex = 0;
-let correctAnsser = 0;
-
-displayFirstQuestion ()
-
-getAnswer ()
-
-dispayNextQuestion ()
-
-displayResult ()
 
