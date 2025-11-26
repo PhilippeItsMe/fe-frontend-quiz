@@ -502,14 +502,20 @@ const subject_display = document.getElementsByClassName('subject-display')[0];
 const subject_icon = document.getElementById('subject-icon');
 const subject_name = document.getElementById('subject-name');
 
-// question rollout var
+// question rollout var & const
 let currentQuestionIndex = 0;
 let correctAnswer = 0;
 
-function displayFirstQuestion(quizzSelected) {
+const answers = document.getElementsByClassName('answer');
+const a_answ = document.getElementById('a-answ');
+const b_answ = document.getElementById('b-answ');
+const c_answ = document.getElementById('c-answ');
+const d_answ = document.getElementById('d-answ');
+const answer_btn = document.getElementById('answer-btn')
 
-    console.log(quizzSelected);
 
+function displayQuestionsInterface(quizzSelected) {
+    
     // page change
     subject_toogle_wrapper.style.justifyContent = 'end';
     title_display.style.display = 'none';
@@ -535,37 +541,44 @@ function displayFirstQuestion(quizzSelected) {
             subject_icon.classList.add('bg-purple100')
             break
     }
+}
+
+function displayQuestion(quizzSelected) {
 
     // question & answer display
-    console.log(currentQuestionIndex)
-    console.log(correctAnswer)
+    subtitle_count.textContent = `Question ${currentQuestionIndex + 1} of 10`;
 
-
-
-
-
-
-
-
+    subject_question.textContent = quizzSelected.questions[currentQuestionIndex].question;
     
+    a_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[0];
+    b_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[1];
+    c_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[2];
+    d_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[3];
+
+    // answer check & score incrementation
+
+    let user_answer = '';
+    
+
+    answer_btn.addEventListener('click',(event) => {
+        for (let i = 0; i < 4; i++) {
+            if (answers[i] === document.activeElement && answers[i].textContent == quizzSelected.questions[currentQuestionIndex].answer) {
+                correctAnswer += 1;
+                console.log('Réponse correcte')
+                console.log(correctAnswer)
+            }
+            else
+                console.log('Réponse incorrecte')
+                console.log(correctAnswer)
+        }
+    });
 }
 
-function getAnswer() {
-    // Write your code here
-}
 
-function displayNextQuestion() {
-    // Write your code here
-}
 
 function displayResult() {
     // Write your code here
 }
-
-
-
-
-
 
 
 // ---------------- Quizz Choice ---------------- //
@@ -574,13 +587,13 @@ let selectedButtonText = null;
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', (event) => {
-        selectedButtonText = event.currentTarget.textContent.trim();
-        // console.log('Bouton cliqué:', selectedButtonText);
+        const subjectSpan = event.currentTarget.querySelector('.subject');
+        selectedButtonText = subjectSpan ? subjectSpan.textContent.trim() : event.currentTarget.textContent.trim();
         const quizzSelected = quizzes.find(
-            item => item.title === selectedButtonText)
-        displayFirstQuestion(quizzSelected)
+            item => item.title === selectedButtonText);
+        if (quizzSelected) {
+            displayQuestionsInterface(quizzSelected);
+            displayQuestion(quizzSelected);
+        }
     });
 }
-
-// ---------------- Quizz Selection ---------------- //
-
