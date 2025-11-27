@@ -434,9 +434,9 @@ const subtitle = document.getElementsByClassName('subtitle')[0];
 const buttons = document.getElementsByTagName('button');
 const subjects = document.getElementsByClassName('subject');
 
-const subtitle_count = document.getElementsByClassName('subtitle-count')[0];
-const subject_question = document.getElementById('subject-question');
-const progress_bar_background = document.getElementsByClassName(
+const subtitleCount = document.getElementsByClassName('subtitle-count')[0];
+const subjectQuestion = document.getElementById('subject-question');
+const progressBarBackground = document.getElementsByClassName(
     'progress-bar')[0];;
 
 const toggle = document.getElementById('monToggle');
@@ -450,9 +450,9 @@ toggle.addEventListener('change', () => {
         title.style.color = 'var(--blue900)';
         subtitle.style.color = 'var(--grey500)';
 
-        subtitle_count.style.color = 'var(--blue900)';
-        progress_bar_background.style.backgroundColor = 'var(--white)';
-        subject_question.style.color = 'var(--blue900)';
+        subtitleCount.style.color = 'var(--blue900)';
+        progressBarBackground.style.backgroundColor = 'var(--white)';
+        subjectQuestion.style.color = 'var(--blue900)';
         
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.backgroundColor = 'var(--white)';
@@ -470,9 +470,9 @@ toggle.addEventListener('change', () => {
         title.style.color = 'var(--white)';
         subtitle.style.color = 'var(--blue300)';
 
-        subtitle_count.style.color = 'var(--white)';
-        progress_bar_background.style.backgroundColor = 'var(--blue850)';
-        subject_question.style.color = 'var(--white)';
+        subtitleCount.style.color = 'var(--white)';
+        progressBarBackground.style.backgroundColor = 'var(--blue850)';
+        subjectQuestion.style.color = 'var(--white)';
 
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.backgroundColor = 'var(--blue850)';
@@ -489,89 +489,110 @@ toggle.addEventListener('change', () => {
 // ---------------- Quizz Selection ---------------- //
 
 // page const
-const subject_toogle_wrapper = document.getElementsByClassName(
+const subjectToggleWrapper = document.getElementsByClassName(
     'subject-toogle-wrapper')[0];
-const title_display = document.getElementsByClassName('title-display')[0];
-const subject_choice_display = document.getElementsByClassName(
+const titleDisplay = document.getElementsByClassName('title-display')[0];
+const subjectChoiceDisplay = document.getElementsByClassName(
     'subject-choice-display')[0];
-const question_display = document.getElementsByClassName('question-display')[0];
-const answers_display = document.getElementsByClassName('answers-display')[0];
-const subject_display = document.getElementsByClassName('subject-display')[0];
+const questionDisplay = document.getElementsByClassName('question-display')[0];
+const answersDisplay = document.getElementsByClassName('answers-display')[0];
+const subjectDisplay = document.getElementsByClassName('subject-display')[0];
 
 // subject const
-const subject_icon = document.getElementById('subject-icon');
-const subject_name = document.getElementById('subject-name');
+const subjectIcon = document.getElementById('subject-icon');
+const subjectName = document.getElementById('subject-name');
 
 // question rollout var & const
 let currentQuestionIndex = 0;
 let correctAnswer = 0;
 
 const answers = document.getElementsByClassName('answer');
-const a_answ = document.getElementById('a-answ');
-const b_answ = document.getElementById('b-answ');
-const c_answ = document.getElementById('c-answ');
-const d_answ = document.getElementById('d-answ');
-const answer_btn = document.getElementById('answer-btn')
+const aAnswer = document.getElementById('a-answ');
+const bAnswer = document.getElementById('b-answ');
+const cAnswer = document.getElementById('c-answ');
+const dAnswer = document.getElementById('d-answ');
+const answerBtn = document.getElementById('answer-btn')
 
 
 function displayQuestionsInterface(quizzSelected) {
     
     // page change
-    subject_toogle_wrapper.style.justifyContent = 'end';
-    title_display.style.display = 'none';
-    subject_choice_display.style.display = "none";
-    question_display.style.display = "initial";
-    answers_display.style.display = "flex";
-    subject_display.style.display = "flex";
+    subjectToggleWrapper.style.justifyContent = 'end';
+    titleDisplay.style.display = 'none';
+    subjectChoiceDisplay.style.display = "none";
+    questionDisplay.style.display = "initial";
+    answersDisplay.style.display = "flex";
+    subjectDisplay.style.display = "flex";
 
     // subject display
-    subject_icon.src =  quizzSelected.icon;
+    subjectIcon.src =  quizzSelected.icon;
 
     switch (quizzSelected.title) {
         case 'HTML':
-            subject_icon.classList.add('bg-orange50')
+            subjectIcon.classList.add('bg-orange50')
             break
         case 'CSS':
-            subject_icon.classList.add('bg-green100')
+            subjectIcon.classList.add('bg-green100')
             break
         case 'JavaScript':
-            subject_icon.classList.add('bg-blue50')
+            subjectIcon.classList.add('bg-blue50')
             break
         case 'Accessibility':
-            subject_icon.classList.add('bg-purple100')
+            subjectIcon.classList.add('bg-purple100')
             break
     }
 }
 
-function displayQuestion(quizzSelected) {
+function displayQuestionContent(quizzSelected) {
 
     // question & answer display
-    subtitle_count.textContent = `Question ${currentQuestionIndex + 1} of 10`;
+    subtitleCount.textContent = `Question ${currentQuestionIndex + 1} of 10`;
 
-    subject_question.textContent = quizzSelected.questions[currentQuestionIndex].question;
+    subjectQuestion.textContent = quizzSelected.questions[currentQuestionIndex].question;
     
-    a_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[0];
-    b_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[1];
-    c_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[2];
-    d_answ.textContent = quizzSelected.questions[currentQuestionIndex].options[3];
+    aAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[0];
+    bAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[1];
+    cAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[2];
+    dAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[3];
 
     // answer check & score incrementation
-
-    let user_answer = '';
+    const expectedAnswer = quizzSelected.questions[currentQuestionIndex].answer;
     
+    // stock the selected answer before the btn Submit Answer click
+    let selectedAnswer = null;
+    
+    for (let i = 0; i < 4; i++) {
+        answers[i].addEventListener('click', () => {
+            selectedAnswer = answers[i];
+        });
+    }
 
-    answer_btn.addEventListener('click',(event) => {
-        for (let i = 0; i < 4; i++) {
-            if (answers[i] === document.activeElement && answers[i].textContent == quizzSelected.questions[currentQuestionIndex].answer) {
+    answerBtn.addEventListener('click', () => {
+        if (selectedAnswer) {
+            const userAnswerText = selectedAnswer.textContent;
+            console.log(`userAnswer : ${userAnswerText}`);
+            
+            if (userAnswerText === expectedAnswer) {
                 correctAnswer += 1;
-                console.log('Réponse correcte')
-                console.log(correctAnswer)
+                console.log('Réponse correcte');
+                console.log(`Score: ${correctAnswer}`);
+            } else {
+                console.log('Réponse incorrecte');
+                console.log(`Score: ${correctAnswer}`);   
             }
-            else
-                console.log('Réponse incorrecte')
-                console.log(correctAnswer)
-        }
-    });
+            currentQuestionIndex += 1
+            console.log(`currentQuestionIndex : ${currentQuestionIndex}`);
+            displayNextQuestionContent(quizzSelected);
+        }});   
+}
+
+function displayNextQuestionContent (quizzSelected) {
+    if (currentQuestionIndex < 10) {
+        displayQuestionContent(quizzSelected)
+    }
+    else {
+        displayResult();
+    }
 }
 
 
@@ -593,7 +614,7 @@ for (let i = 0; i < buttons.length; i++) {
             item => item.title === selectedButtonText);
         if (quizzSelected) {
             displayQuestionsInterface(quizzSelected);
-            displayQuestion(quizzSelected);
+            displayQuestionContent(quizzSelected);
         }
     });
 }
