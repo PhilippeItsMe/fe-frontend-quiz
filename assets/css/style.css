@@ -120,6 +120,7 @@ p {
     flex-direction: column;
     gap: 1rem;
     width: 50%;
+    min-width: 0;
 }
 
 /* -------------------- Start Menu --------------------*/
@@ -195,7 +196,7 @@ button {
     background-color: var(--blue850);
     border: 2px solid var(--blue850);
     border-radius: 0.7rem;
-    min-width: 25rem;
+    width: 25rem;
     cursor: pointer;
     padding: 0.5rem;
 }
@@ -260,6 +261,9 @@ button span {
     font-size: 1.5rem;
     margin-top: 2rem;
     margin-bottom: 6rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 25rem;
 }
 
 /* Progress bar */
@@ -284,6 +288,10 @@ button span {
 .toogle-accessibility:has(.toggle-input:focus-visible) {
     border: 2px solid var(--purple600);  
 }   
+
+.answer {
+    text-align: start;
+}
 
 .answers-display button:first-of-type:hover,
 .answers-display  button:first-of-type:focus {
