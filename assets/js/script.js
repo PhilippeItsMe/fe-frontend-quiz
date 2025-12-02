@@ -526,6 +526,7 @@ function displayQuestionsInterface(quizzSelected) {
 
     // subject display
     subjectIcon.src =  quizzSelected.icon;
+    subjectName.textContent = quizzSelected.title;
 
     switch (quizzSelected.title) {
         case 'HTML':
@@ -555,24 +556,34 @@ function displayQuestionContent(quizzSelected) {
     cAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[2];
     dAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[3];
 
-    // answer check & score incrementation
+    // answer check
     const expectedAnswer = quizzSelected.questions[currentQuestionIndex].answer;
-    
-    // stock the selected answer before the btn Submit Answer click
     let selectedAnswer = null;
     
-    for (let i = 0; i < 4; i++) {
-        answers[i].addEventListener('click', () => {
-            selectedAnswer = answers[i];
-        });
-    }
-
-    answerBtn.addEventListener('click', () => {
+    // Use event delegation on the parent instead of individual listeners
+    const answersContainer = answersDisplay; //Name change, the content stay the same
+    
+    const handleAnswerClick = (e) => {
+        const clickedButton = e.target.closest('button');
+        if (clickedButton && clickedButton !== answerBtn) {
+            const answerSpan = clickedButton.querySelector('.answer');
+            if (answerSpan) {
+                selectedAnswer = answerSpan.textContent.trim();
+                console.log(`Selected: "${selectedAnswer}"`);
+            }
+        }
+    };
+    
+    const handleSubmit = () => {
         if (selectedAnswer) {
-            const userAnswerText = selectedAnswer.textContent;
-            console.log(`userAnswer : ${userAnswerText}`);
+            console.log(`userAnswer: "${selectedAnswer}"`);
+            console.log(`expectedAnswer: "${expectedAnswer}"`);
             
-            if (userAnswerText === expectedAnswer) {
+            // Remove listeners
+            answersContainer.removeEventListener('click', handleAnswerClick);
+            answerBtn.removeEventListener('click', handleSubmit);
+            
+            if (selectedAnswer === expectedAnswer) {
                 correctAnswer += 1;
                 console.log('Réponse correcte');
                 console.log(`Score: ${correctAnswer}`);
@@ -580,15 +591,27 @@ function displayQuestionContent(quizzSelected) {
                 console.log('Réponse incorrecte');
                 console.log(`Score: ${correctAnswer}`);   
             }
-            currentQuestionIndex += 1
-            console.log(`currentQuestionIndex : ${currentQuestionIndex}`);
+            currentQuestionIndex += 1;
+            console.log(`nextQuestionIndex : ${currentQuestionIndex}`);
             displayNextQuestionContent(quizzSelected);
-        }});   
+        } else {
+            console.log('Aucune réponse sélectionnée');
+        }
+    };
+    
+    // Add listeners
+    answersContainer.addEventListener('click', handleAnswerClick);
+    answerBtn.addEventListener('click', handleSubmit);   
 }
+
+const progressionBar = document.getElementsByClassName('progress-fill')[0];
 
 function displayNextQuestionContent (quizzSelected) {
     if (currentQuestionIndex < 10) {
         displayQuestionContent(quizzSelected)
+        let pourcentage = (currentQuestionIndex + 1)*10
+        console.log(`Progression bar: ${pourcentage}`);
+        progressionBar.style.width =  `${pourcentage}%`;
     }
     else {
         displayResult();
