@@ -513,6 +513,8 @@ const cAnswer = document.getElementById('c-answ');
 const dAnswer = document.getElementById('d-answ');
 const answerBtn = document.getElementById('answer-btn')
 
+const pleaseWrapper = document.getElementsByClassName('please-wrapper')[0];
+
 
 function displayQuestionsInterface(quizzSelected) {
     
@@ -546,7 +548,7 @@ function displayQuestionsInterface(quizzSelected) {
 
 function displayQuestionContent(quizzSelected) {
 
-    // question & answer display
+    // question number, question & answers display
     subtitleCount.textContent = `Question ${currentQuestionIndex + 1} of 10`;
 
     subjectQuestion.textContent = quizzSelected.questions[currentQuestionIndex].question;
@@ -591,10 +593,12 @@ function displayQuestionContent(quizzSelected) {
                 console.log('Réponse incorrecte');
                 console.log(`Score: ${correctAnswer}`);   
             }
+            pleaseWrapper.style.display = 'none';
             currentQuestionIndex += 1;
             console.log(`nextQuestionIndex : ${currentQuestionIndex}`);
             displayNextQuestionContent(quizzSelected);
         } else {
+            pleaseWrapper.style.display = 'flex';
             console.log('Aucune réponse sélectionnée');
         }
     };
@@ -617,7 +621,6 @@ function displayNextQuestionContent (quizzSelected) {
         displayResult();
     }
 }
-
 
 
 function displayResult() {

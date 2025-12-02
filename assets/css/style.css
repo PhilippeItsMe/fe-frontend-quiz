@@ -192,7 +192,7 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     background-color: var(--blue850);
     border: 2px solid var(--blue850);
     border-radius: 0.7rem;
@@ -200,6 +200,19 @@ button {
     cursor: pointer;
     padding: 0.5rem;
 }
+
+/* Correct answer switch */
+button img[alt="correct answer"] {
+    display: none;
+    margin-left: auto;
+}
+
+/* Wrong answer switch */
+button img[alt="wrong answer"] {
+    display: none;
+    margin-left: auto;
+}
+
 
 button:first-of-type:hover,
 button:first-of-type:focus {
@@ -282,9 +295,7 @@ button span {
     border-radius: 0.2rem;
 }
 
-
 /* Answers */
-
 .toogle-accessibility:has(.toggle-input:focus-visible) {
     border: 2px solid var(--purple600);  
 }   
@@ -340,6 +351,18 @@ button span {
     align-items: center;
 }
 
+.please-wrapper {
+    display: none; /*none or flex*/
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.correct-answer {
+    justify-self: right;
+}
+
 /* Form step 1(Start Menu) to step 2 (Questions Menu)*/
 
 /* Step 1 */
@@ -377,7 +400,12 @@ button span {
     
     .quiz-wrapper {
         flex-direction: column;
-        }
+    }
+    
+    .question-wrapper,
+    .answers-wrapper {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -387,6 +415,6 @@ button span {
     }
 
     button {
-            min-width: 15rem;
+            width: 100%;
         }
 }
