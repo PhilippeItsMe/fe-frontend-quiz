@@ -429,16 +429,21 @@
 
 const background = document.getElementsByClassName('body-wrapper')[0];
 const surtitle = document.getElementsByClassName('surtitle')[0];
+const surtitle2 = document.getElementsByClassName('surtitle2')[0];
 const title = document.getElementsByTagName('h1')[0];
+const title1 = document.getElementsByTagName('h1')[1];
 const subtitle = document.getElementsByClassName('subtitle')[0];
 const buttons = document.getElementsByTagName('button');
 const subjects = document.getElementsByClassName('subject');
 const subtitleCount = document.getElementsByClassName('subtitle-count')[0];
 const subjectQuestion = document.getElementById('subject-question');
 const progressBarBackground = document.getElementsByClassName(
-    'progress-bar')[0];;
+    'progress-bar')[0];
 const toggle = document.getElementById('monToggle');
+const subResultWrapper = document.getElementsByClassName('sub-result-wrapper')[0];
 const pleaseWrapperSpan = document.querySelector('.please-wrapper span');
+const resultNb = document.getElementsByClassName('result-nb')[0];
+const outOf = document.getElementsByClassName('out-of')[0];
 
 toggle.addEventListener('change', () => {
     // day
@@ -446,13 +451,14 @@ toggle.addEventListener('change', () => {
         background.style.backgroundImage = 'url(assets/images/pattern-background-desktop-light.svg)';
         background.style.backgroundColor = 'var(--grey50)';
         surtitle.style.color = 'var(--blue900)';
+        surtitle2.style.color = 'var(--blue900)';
         title.style.color = 'var(--blue900)';
         subtitle.style.color = 'var(--grey500)';
 
         subtitleCount.style.color = 'var(--blue900)';
         progressBarBackground.style.backgroundColor = 'var(--white)';
         subjectQuestion.style.color = 'var(--blue900)';
-        
+
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.backgroundColor = 'var(--white)';
             buttons[i].style.border = '2px solid var(--white)';
@@ -462,12 +468,16 @@ toggle.addEventListener('change', () => {
         }
 
         pleaseWrapperSpan.style.color ='var(--red200)';
+        resultNb.style.color ='var(--blue900)';
+        title1.style.color ='var(--blue900)';
+        subResultWrapper.style.backgroundColor ='var(--white)';
     }
     // night
     else {
         background.style.backgroundImage = 'url(assets/images/pattern-background-desktop-dark.svg)'
         background.style.backgroundColor = 'var(--blue900)';
         surtitle.style.color = 'var(--white)';
+        surtitle2.style.color = 'var(--white)';
         title.style.color = 'var(--white)';
         subtitle.style.color = 'var(--blue300)';
 
@@ -485,6 +495,11 @@ toggle.addEventListener('change', () => {
         }
 
         pleaseWrapperSpan.style.color ='var(--white)';
+        resultNb.style.color ='var(--white)';
+        subResultWrapper.style.backgroundColor ='var(--white)';
+        subResultWrapper.style.backgroundColor ='var(--blue850)';
+        title1.style.color ='var(--white)';
+
     }
 });
 
@@ -504,6 +519,8 @@ const subjectDisplay = document.getElementsByClassName('subject-display')[0];
 // subject const
 const subjectIcon = document.getElementById('subject-icon');
 const subjectName = document.getElementById('subject-name');
+const subjectIcon2 = document.getElementById('subject-icon-2');
+const subjectName2 = document.getElementById('subject-name-2');
 
 // question rollout var & const
 let currentQuestionIndex = 0;
@@ -530,21 +547,26 @@ function displayQuestionsInterface(quizzSelected) {
     subjectDisplay.style.display = "flex";
 
     // subject display
-    subjectIcon.src =  quizzSelected.icon;
+    subjectIcon.src = quizzSelected.icon;
     subjectName.textContent = quizzSelected.title;
+    subjectName2.textContent = quizzSelected.title;
 
     switch (quizzSelected.title) {
         case 'HTML':
-            subjectIcon.classList.add('bg-orange50')
+            subjectIcon.classList.add('bg-orange50');
+            subjectIcon2.classList.add('bg-orange50');
             break
         case 'CSS':
-            subjectIcon.classList.add('bg-green100')
+            subjectIcon.classList.add('bg-green100');
+            subjectIcon2.classList.add('bg-green100');
             break
         case 'JavaScript':
-            subjectIcon.classList.add('bg-blue50')
+            subjectIcon.classList.add('bg-blue50');
+            subjectIcon2.classList.add('bg-blue50');
             break
         case 'Accessibility':
-            subjectIcon.classList.add('bg-purple100')
+            subjectIcon.classList.add('bg-purple100');
+            subjectIcon2.classList.add('bg-purple100');
             break
     }
 }
@@ -589,7 +611,8 @@ function displayQuestionContent(quizzSelected) {
             answerBtn.removeEventListener('click', handleSubmit);
             
             if (selectedAnswer === expectedAnswer) {
-
+                correctAnswer += 1;
+                
                 const allButtons = answersDisplay.querySelectorAll('button:not(#answer-btn)');
                 allButtons.forEach(btn => {
                     const answerSpan = btn.querySelector('.answer');
@@ -599,10 +622,10 @@ function displayQuestionContent(quizzSelected) {
                             correctIcon.classList.add('right-wrong-display');
                         }
                     }
-                })
-        
-                correctAnswer += 1;     
-
+                });
+                
+                console.log('Réponse correcte');
+                console.log(`Score: ${correctAnswer}`);
             } else {
 
                 selectedButton.classList.add('switch-to-wrong');
@@ -629,8 +652,10 @@ function displayQuestionContent(quizzSelected) {
 
             pleaseWrapper.style.display = 'none';
             
+            console.log('Attente de 2 secondes avant question suivante...');
             // wait 2.5 seconds before moving to next question
             setTimeout(() => {
+                console.log('Timeout déclenché! Index actuel:', currentQuestionIndex);
                 // remove all styling classes
                 const allButtons = answersDisplay.querySelectorAll('button:not(#answer-btn)');
                 allButtons.forEach(btn => {
@@ -644,6 +669,8 @@ function displayQuestionContent(quizzSelected) {
                 });
                 
                 currentQuestionIndex += 1;
+                console.log('Nouvel index:', currentQuestionIndex);
+                console.log('Appel de displayNextQuestionContent...');
                 displayNextQuestionContent(quizzSelected);
             }, 2000);
         } else {
@@ -670,9 +697,20 @@ function displayNextQuestionContent (quizzSelected) {
     }
 }
 
+const resultDisplay = document.getElementsByClassName('result-display');
 
 function displayResult() {
-    // Write your code here
+    // Hide question and answers
+    questionDisplay.style.display = 'none';
+    answersDisplay.style.display = 'none';
+    
+    // Show result display
+    for (let i = 0; i < resultDisplay.length; i++) {
+        resultDisplay[i].style.display = 'initial';
+    }
+    
+    // Update result score
+    resultNb.textContent = correctAnswer;
 }
 
 

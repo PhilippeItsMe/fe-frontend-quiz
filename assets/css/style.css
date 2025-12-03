@@ -149,9 +149,9 @@ p {
     justify-content: center;
     gap: 1rem;
     height: 350px;
-    width: 400px;
+    width: 100%;
     background-color: var(--blue850);
-    border: 2px solid var(--blue850);
+    border: none;
     border-radius: 0.7rem;
 }
 
@@ -160,13 +160,13 @@ p {
 /* Toggle */
 .toggle-wrapper {
     display: flex;
-    flex: row;
+    flex-direction: row;
     justify-content: end;
 }
 
 .toogle-accessibility {
     display: flex;
-    flex: row;
+    flex-direction: row;
     justify-content: end;
     border: 2px solid transparent;
     padding: 8px;
@@ -389,12 +389,14 @@ button span {
 
 .answer-btn {
     height:82px;
+    width: 100%;
     font-size: 1.2rem;
     border: none !important;
     background-color: var(--purple200) !important;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .please-wrapper {
@@ -426,11 +428,11 @@ button span {
 }
 
 .title-display {
-    display: none /*none or initial*/
+    display: initial/*none or initial*/
 
 }
 .subject-choice-display {
-    display: none; /*none or flex*/
+    display: flex; /*none or flex*/
 }
 
 /* Step 2 */
@@ -445,6 +447,11 @@ button span {
 /* Form step 2 (Questions) to step 3 (Result) */
 
 /* Step 3 */
+.result-display {
+    display: none; /*none or initial*/
+}
+
+
 
 
 /* -------------------- Responsivness --------------------*/
