@@ -433,13 +433,12 @@ const title = document.getElementsByTagName('h1')[0];
 const subtitle = document.getElementsByClassName('subtitle')[0];
 const buttons = document.getElementsByTagName('button');
 const subjects = document.getElementsByClassName('subject');
-
 const subtitleCount = document.getElementsByClassName('subtitle-count')[0];
 const subjectQuestion = document.getElementById('subject-question');
 const progressBarBackground = document.getElementsByClassName(
     'progress-bar')[0];;
-
 const toggle = document.getElementById('monToggle');
+const pleaseWrapperSpan = document.querySelector('.please-wrapper span');
 
 toggle.addEventListener('change', () => {
     // day
@@ -461,6 +460,8 @@ toggle.addEventListener('change', () => {
         for (let i = 0; i < subjects.length; i++) {
             subjects[i].style.color = 'var(--blue900)';
         }
+
+        pleaseWrapperSpan.style.color ='var(--red200)';
     }
     // night
     else {
@@ -482,6 +483,8 @@ toggle.addEventListener('change', () => {
             subjects[i].style.color = 'var(--white)';
             
         }
+
+        pleaseWrapperSpan.style.color ='var(--white)';
     }
 });
 

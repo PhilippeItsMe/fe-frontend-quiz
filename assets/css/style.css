@@ -90,6 +90,15 @@ p {
     font-size: 1rem;
 }
 
+.result-nb {
+    font-size: 7rem;
+}
+
+.out-of {
+    color: var(--blue300);
+    font-weight: 300;
+}
+
 
 /* -------------- ------ Section wrappers --------------------*/
 
@@ -121,6 +130,29 @@ p {
     gap: 1rem;
     width: 50%;
     min-width: 0;
+}
+
+.result-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    min-width: 0;
+}
+
+.sub-result-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 350px;
+    width: 400px;
+    background-color: var(--blue850);
+    border: 2px solid var(--blue850);
+    border-radius: 0.7rem;
 }
 
 /* -------------------- Start Menu --------------------*/
@@ -377,22 +409,29 @@ button span {
     justify-self: right;
 }
 
-/* Form step 1(Start Menu) to step 2 (Questions Menu)*/
+/* -------------------- Result (step 3) --------------------*/
+
+.result-wrapper button:hover,
+.result-wrapper button:focus {
+    background-color: var(--purple600) !important;
+    border: none !important;
+}
+
+
+/* Form step 1( Start Menu) to step 2 (Questions)*/
 
 /* Step 1 */
-
 .subject-toogle-wrapper {
     justify-content: end; /*space-between or end*/
 }
 
 .title-display {
-    display: initial; /*none or initial*/
+    display: none /*none or initial*/
 
 }
 .subject-choice-display {
-    display: flex; /*none or flex*/
+    display: none; /*none or flex*/
 }
-
 
 /* Step 2 */
 .question-display {
@@ -402,6 +441,10 @@ button span {
 .subject-display {
     display: none; /*none or flex*/
 }
+
+/* Form step 2 (Questions) to step 3 (Result) */
+
+/* Step 3 */
 
 
 /* -------------------- Responsivness --------------------*/

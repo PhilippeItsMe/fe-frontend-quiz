@@ -46,14 +46,14 @@
             <!-- Start & Questions Column -->
             <div class="questions-wrapper">   
 
-                <!-- Start Menu -->
+                <!-- Start Menu (step 1)-->
                 <div id="title-wrapper" class="title-display">
                     <p class="surtitle">Welcome to the</p>
                     <h1>Frontend Quiz!</h1>
                     <p class="subtitle">Pick a subject to get started</p>
                 </div>
                 
-                <!-- Question Menu (step2)-->
+                <!-- Questions (step 2)-->
                 <div id="question-wrapper" class="question-display">
                     <!-- Question number -->
                     <p class="subtitle-count">Question 1 of 10</p>
@@ -63,12 +63,19 @@
                     <div class="progress-bar">
                         <div class="progress-fill"> </div>
                     </div>
-               </div> 
+               </div>
+
+                <!-- Result (step 3)-->
+                <div id="result-wrapper" class="result-display">
+                    <p class="surtitle">Quiz completed</p>
+                    <h1>You scored...</h1>
+                </div>
+
             </div>
 
             <!-- Answers Column -->
 
-            <!-- Start Menu -->
+            <!-- Start Menu (step 1)-->
             <div class="answers-wrapper subject-choice-display">
                 <button>
                     <img class="icon bg-orange50" src="assets/images/icon-html.svg" alt="html icon">
@@ -88,7 +95,7 @@
                 </button>
             </div>
 
-            <!-- Question Menu (step2) -->
+            <!-- Questions (step 2) -->
             <div class="answers-wrapper answers-display">
                 <button class="answsers" id="a-btn">
                     <span class="letter-box">A</span>
@@ -119,6 +126,21 @@
                     <img src="assets/images/icon-error.svg" alt="waiting message">
                     <span>Please select an answer</span>
                 </div>
+            </div>
+
+            <!-- Result (step 3) -->
+            <div class="result-wrapper result-display">
+                <div class="sub-result-wrapper">
+                    <div class="subject-wrapper"> 
+                        <img id="subject-icon" class="icon bg-orange50" src="assets/images/icon-html.svg" alt="subject icon">
+                        <span id ="subject-name" class="subject">HTML</span>
+                    </div>
+                    <p class="result-nb">8</p>
+                    <p class="out-of">out of 10</p>
+                </div>
+                <button id="reload-btn" class="answer-btn">
+                    Play Again
+                </button>
             </div>
         </div>
 
