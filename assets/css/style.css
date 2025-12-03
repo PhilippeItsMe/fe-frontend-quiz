@@ -192,7 +192,7 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     background-color: var(--blue850);
     border: 2px solid var(--blue850);
     border-radius: 0.7rem;
@@ -207,13 +207,27 @@ button img[alt="correct answer"] {
     margin-left: auto;
 }
 
+.right-wrong-display {
+    display: block !important;
+}
+
 /* Wrong answer switch */
 button img[alt="wrong answer"] {
     display: none;
     margin-left: auto;
 }
 
+.switch-to-wrong {
+    border: 2px solid var(--red200) !important;
 
+}
+
+.switch-to-wrong span:first-of-type {
+    background-color: var(--red200);
+    color: var(--white);
+} 
+
+/* Hover & focus */
 button:first-of-type:hover,
 button:first-of-type:focus {
     border: 2px solid var(--orange400) !important;

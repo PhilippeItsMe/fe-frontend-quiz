@@ -558,53 +558,99 @@ function displayQuestionContent(quizzSelected) {
     cAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[2];
     dAnswer.textContent = quizzSelected.questions[currentQuestionIndex].options[3];
 
-    // answer check
+    // expected answer
     const expectedAnswer = quizzSelected.questions[currentQuestionIndex].answer;
     let selectedAnswer = null;
+    let selectedButton = null;
     
-    // Use event delegation on the parent instead of individual listeners
-    const answersContainer = answersDisplay; //Name change, the content stay the same
-    
+    // answer grab  
     const handleAnswerClick = (e) => {
         const clickedButton = e.target.closest('button');
         if (clickedButton && clickedButton !== answerBtn) {
             const answerSpan = clickedButton.querySelector('.answer');
             if (answerSpan) {
                 selectedAnswer = answerSpan.textContent.trim();
-                console.log(`Selected: "${selectedAnswer}"`);
+                selectedButton = clickedButton;
             }
         }
     };
     
+    // answer check
     const handleSubmit = () => {
-        if (selectedAnswer) {
+        if (selectedAnswer && selectedButton) {
             console.log(`userAnswer: "${selectedAnswer}"`);
             console.log(`expectedAnswer: "${expectedAnswer}"`);
             
-            // Remove listeners
-            answersContainer.removeEventListener('click', handleAnswerClick);
+            // remove listeners
+            answersDisplay.removeEventListener('click', handleAnswerClick);
             answerBtn.removeEventListener('click', handleSubmit);
             
             if (selectedAnswer === expectedAnswer) {
-                correctAnswer += 1;
-                console.log('Réponse correcte');
-                console.log(`Score: ${correctAnswer}`);
+
+                const allButtons = answersDisplay.querySelectorAll('button:not(#answer-btn)');
+                allButtons.forEach(btn => {
+                    const answerSpan = btn.querySelector('.answer');
+                    if (answerSpan && answerSpan.textContent.trim() === expectedAnswer) {
+                        const correctIcon = btn.querySelector('img[alt="correct answer"]');
+                        if (correctIcon) {
+                            correctIcon.classList.add('right-wrong-display');
+                        }
+                    }
+                })
+        
+                correctAnswer += 1;     
+
             } else {
+
+                selectedButton.classList.add('switch-to-wrong');
+                const incorrectIcon = selectedButton.querySelector('img[alt="wrong answer"]');
+                if (incorrectIcon) {
+                            incorrectIcon.classList.add('right-wrong-display');
+                        }
+                
+                // find and highlight the correct answer
+                const allButtons = answersDisplay.querySelectorAll('button:not(#answer-btn)');
+                allButtons.forEach(btn => {
+                    const answerSpan = btn.querySelector('.answer');
+                    if (answerSpan && answerSpan.textContent.trim() === expectedAnswer) {
+                        const correctIcon = btn.querySelector('img[alt="correct answer"]');
+                        if (correctIcon) {
+                            correctIcon.classList.add('right-wrong-display');
+                        }
+                    }
+                });
+                
                 console.log('Réponse incorrecte');
                 console.log(`Score: ${correctAnswer}`);   
             }
+
             pleaseWrapper.style.display = 'none';
-            currentQuestionIndex += 1;
-            console.log(`nextQuestionIndex : ${currentQuestionIndex}`);
-            displayNextQuestionContent(quizzSelected);
+            
+            // wait 2.5 seconds before moving to next question
+            setTimeout(() => {
+                // remove all styling classes
+                const allButtons = answersDisplay.querySelectorAll('button:not(#answer-btn)');
+                allButtons.forEach(btn => {
+                    btn.classList.remove('right-answer', 'correct-answer-btn', 'switch-to-wrong');
+                    
+                    // remove classes from images
+                    const images = btn.querySelectorAll('img');
+                    images.forEach(img => {
+                        img.classList.remove('right-wrong-display', 'wrong-answer');
+                    });
+                });
+                
+                currentQuestionIndex += 1;
+                displayNextQuestionContent(quizzSelected);
+            }, 2000);
         } else {
             pleaseWrapper.style.display = 'flex';
             console.log('Aucune réponse sélectionnée');
         }
     };
     
-    // Add listeners
-    answersContainer.addEventListener('click', handleAnswerClick);
+    // add listeners
+    answersDisplay.addEventListener('click', handleAnswerClick);
     answerBtn.addEventListener('click', handleSubmit);   
 }
 
@@ -614,7 +660,6 @@ function displayNextQuestionContent (quizzSelected) {
     if (currentQuestionIndex < 10) {
         displayQuestionContent(quizzSelected)
         let pourcentage = (currentQuestionIndex + 1)*10
-        console.log(`Progression bar: ${pourcentage}`);
         progressionBar.style.width =  `${pourcentage}%`;
     }
     else {
