@@ -698,6 +698,7 @@ function displayNextQuestionContent (quizzSelected) {
 }
 
 const resultDisplay = document.getElementsByClassName('result-display');
+const reloadBtn = document.getElementById('reload-btn');
 
 function displayResult() {
     // Hide question and answers
@@ -711,6 +712,10 @@ function displayResult() {
     
     // Update result score
     resultNb.textContent = correctAnswer;
+
+    reloadBtn.addEventListener('click', () => {
+        location.reload();
+    });
 }
 
 
